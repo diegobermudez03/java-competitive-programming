@@ -11,22 +11,18 @@ public class Main {
                 houses.add(cin.nextInt());
             }
 
-            Set<Integer> prohibitedIndexHouses = new HashSet<>();
-            
-            int total = 0;
-            for(int i = 0;  i < houses.size(); i++){
-                if(prohibitedIndexHouses.contains(i)) continue;
-                int left = 0, right = 0;
-                if(i > 0 ) left = houses.get(i-1);
-                if(i < houses.size()-1) right = houses.get(i+1);
+           int[] robValue = new int[houses.size()];
+           robValue[0] = houses.get(0);
+           robValue[1] = houses.get(1);
 
-                if(houses.get(i) > left && houses.get(i) > right){
-                    prohibitedIndexHouses.add(i-1);
-                    prohibitedIndexHouses.add(i+1);
-                    total += houses.get(i);
+           for(int i = 2; i < houses.size(); i++){
+                if(houses.get(i) + robValue[i-2] > robValue[i-1]){
+                    robValue[i] = houses.get(i) + robValue[i-2];
+                }else{
+                    robValue[i] = robValue[i-1];
                 }
-            }
-            System.out.println(total);
+           }
+           System.out.println(robValue[houses.size()-1]);
         }
     }
 }
