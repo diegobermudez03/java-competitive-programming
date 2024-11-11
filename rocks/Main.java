@@ -33,5 +33,6 @@ public class Main{
         for(int i = 0; i < rangeNumber; i++){
             System.out.print(count.get(i) + " ");
         }
+        cin.close();
     }
 }
